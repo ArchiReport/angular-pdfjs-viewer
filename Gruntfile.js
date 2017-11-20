@@ -19,7 +19,7 @@ module.exports = function (grunt) {
               match: /templateUrl:.*/,
               replacement: function () {
               	var content = grunt.file.read('vendor/pdf.js-viewer/viewer.html');
-              	return 'template: ' + escapeContent(content, '\'') + ',';
+              	return 'template: ' + escapeContent(content, '\'') + '\',';
               }
             },
             {
@@ -32,6 +32,15 @@ module.exports = function (grunt) {
           {expand: true, flatten: true, src: ['src/angular-pdfjs-viewer.js'], dest: 'dist/'}
         ]
       }
+    },
+    uglify: {
+      options: {
+      },
+      main: {
+          files: [
+            {expand: true, src: ['dist/angular-pdfjs-viewer.js'], dest: '.'}
+          ]
+      }
     }
   });
 
@@ -41,6 +50,8 @@ module.exports = function (grunt) {
    */
   grunt.loadNpmTasks('grunt-replace');
 
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+
   // Default task(s).
-  grunt.registerTask('default', ['replace']);
+  grunt.registerTask('default', ['replace', 'uglify']);
 };
