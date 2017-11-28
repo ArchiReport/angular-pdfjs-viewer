@@ -126,6 +126,12 @@
                             console.warn("PDFViewerApplication.pdfViewer is not set");
                         }
 
+                        if(typeof window.PDFViewerApplication.unbindWindowEvents === 'undefined') {
+                            window.PDFViewerApplication.prototype.unbindWindowEvents = function() {
+                                window.removeEventListener('keydown', webViewerKeyDown);
+                            };
+                        }
+                        
                         var pages = document.querySelectorAll('.page');
                         angular.forEach(pages, function (page) {
                             var element = angular.element(page);

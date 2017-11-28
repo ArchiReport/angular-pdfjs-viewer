@@ -18,7 +18,7 @@ module.exports = function (grunt) {
             {
               match: /templateUrl:.*/,
               replacement: function () {
-              	var content = grunt.file.read('vendor/pdf.js-viewer/viewer.html');
+              	var content = grunt.file.read('bower_components/pdf.js-viewer/viewer.html');
               	return 'template: ' + escapeContent(content, '\'') + '\',';
               }
             },
@@ -53,5 +53,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task(s).
-  grunt.registerTask('default', ['replace', 'uglify']);
+  grunt.registerTask('default', ['replace']);
 };
