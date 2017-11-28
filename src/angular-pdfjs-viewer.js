@@ -126,10 +126,11 @@
                             console.warn("PDFViewerApplication.pdfViewer is not set");
                         }
 
-                        if(typeof window.PDFViewerApplication.unbindWindowEvents === 'undefined') {
+                        if(window.PDFViewerApplication && typeof window.PDFViewerApplication.unbindWindowEvents === 'undefined') {
                             window.PDFViewerApplication.prototype.unbindWindowEvents = function() {
                                 window.removeEventListener('keydown', webViewerKeyDown);
                             };
+                            console.log('did add method unbindWindowEvents');
                         }
                         
                         var pages = document.querySelectorAll('.page');
